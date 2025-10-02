@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
+import { db } from "@/utils/dbCon";
 export default async function CommentForm(props) {
   const postID = props.postID;
   async function handleAddComment(formData) {
