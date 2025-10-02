@@ -10,7 +10,7 @@ export default async function CommentForm(props) {
       commentContent: formData.get("commentContent"),
     };
     const response = db.query(
-      `INSERT INTO comments (post_id,comment_username,comment_content) VALUES ($1,$2,3)`,
+      `INSERT INTO comments (post_id,comment_username,comment_content) VALUES ($1,$2,$3)`,
       [postID, formValues.commentUsername, formValues.commentContent]
     );
     revalidatePath(`/posts/${postID}`);
