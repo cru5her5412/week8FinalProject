@@ -15,7 +15,7 @@ export default async function CommentForm(props) {
   return (
     <>
       <form action={handleAddComment}>
-        <label htmlFor="commentUsername">Name&lpar;optional&rpar;</label>
+        <label htmlFor="commentUsername">Name(optional)</label>
         <input name="commentUsername" />
         <label htmlFor="commentContent">Comment</label>
         <input name="commentContent" required />

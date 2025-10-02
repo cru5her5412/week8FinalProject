@@ -28,8 +28,8 @@ export default async function AddPostPage() {
         <label htmlFor="postContent">Post Content</label>
         <input name="postContent" required />
         <label htmlFor="postImgUrl">
-          Post Image Url&lpar;currently only accepts unsplash and wikipedia
-          image urls&rpar;
+          Post Image Url(currently only accepts unsplash and wikipedia image
+          urls)
         </label>
         <input name="postImgUrl" />
         <label htmlFor="postCategory">Post Category</label>
