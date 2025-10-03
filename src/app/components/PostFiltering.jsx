@@ -1,24 +1,42 @@
 "use client";
 
-import { redirect } from "next/navigation";
-
+import { redirect, usePathname, useSearchParams } from "next/navigation";
 export default function PostFiltering() {
+  const searchParams = useSearchParams();
+  const sort = searchParams.get("sort");
+  const pathname = usePathname();
   function handleFiltering(e) {
     if (e.target.value === "all") {
-      redirect("/posts");
+      if (sort) {
+        redirect(`/posts?sort=${sort}`);
+      } else {
+        redirect(`/posts`);
+      }
     }
     if (e.target.value === "js") {
-      redirect("/posts?filter=JS");
+      if (sort) {
+        redirect(`/posts?sort=${sort}&filter=JS`);
+      } else {
+        redirect(`/posts?filter=JS`);
+      }
     }
     if (e.target.value === "html") {
-      redirect("/posts?filter=HTML");
+      if (sort) {
+        redirect(`/posts?sort=${sort}&filter=HTML`);
+      } else {
+        redirect(`/posts?filter=HTML`);
+      }
     }
     if (e.target.value === "react") {
-      redirect("/posts?filter=React");
+      if (sort) {
+        redirect(`/posts?sort=${sort}&filter=React`);
+      } else {
+        redirect(`/posts?filter=React`);
+      }
     }
   }
   return (
-    <div className="filterContainer">
+    <>
       <select
         className="filter"
         onChange={(e) => handleFiltering(e)}
@@ -30,6 +48,6 @@ export default function PostFiltering() {
         <option value={"html"}>HTML</option>
         <option value={"react"}>React</option>
       </select>
-    </div>
+    </>
   );
 }

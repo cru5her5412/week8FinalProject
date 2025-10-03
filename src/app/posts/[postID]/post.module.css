@@ -1,0 +1,15 @@
+.postTitle {
+  font-size: 3rem;
+}
+.postCategory {
+  font-size: 2rem;
+}
+.postImage {
+  width: 80%;
+}
+.postContent {
+  font-size: 1rem;
+}
+.postEdit {
+  font-size: 1.5rem;
+}

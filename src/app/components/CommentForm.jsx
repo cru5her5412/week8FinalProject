@@ -18,14 +18,20 @@ export default async function CommentForm(props) {
   }
 
   return (
-    <>
-      <form action={handleAddComment}>
-        <label htmlFor="commentUsername">Name(optional)</label>
-        <input name="commentUsername" />
-        <label htmlFor="commentContent">Comment</label>
-        <input name="commentContent" required />
-        <button type="submit">Post Comment</button>
+    <div className="flex flex-col">
+      <form className="flex flex-col items-center" action={handleAddComment}>
+        <label className="" htmlFor="commentUsername">
+          Name(optional)
+        </label>
+        <input className="" name="commentUsername" />
+        <label className="" htmlFor="commentContent">
+          Comment
+        </label>
+        <input className="" name="commentContent" required />
+        <button className="w-[30%]" type="submit">
+          Post Comment
+        </button>
       </form>
-    </>
+    </div>
   );
 }

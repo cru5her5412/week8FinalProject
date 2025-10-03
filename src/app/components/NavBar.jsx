@@ -2,10 +2,16 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <>
-      <Link href={"/"}>Home</Link>
-      <Link href={"/posts"}>Posts</Link>
-      <Link href={"/add-post"}>Add Post</Link>
-    </>
+    <nav className="navBar">
+      <Link className="navLink" href={"/"}>
+        Home
+      </Link>
+      <Link className="navLink" href={"/posts"}>
+        Posts
+      </Link>
+      <Link className="navLink" href={"/add-post"}>
+        Add Post
+      </Link>
+    </nav>
   );
 }

@@ -1,0 +1,17 @@
+.h1 {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  margin: 5vh 5vw;
+}
+.postFilters {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+}
+.posts {
+  height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-width: 60vw;
+}
