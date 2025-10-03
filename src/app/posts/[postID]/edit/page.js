@@ -1,8 +1,12 @@
 import { db } from "@/utils/dbCon";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-export default async function AddPostPage() {
-  async function handleAddPost(formData) {
+import Link from "next/link";
+
+export default async function EditSpecificPostPage({ params }) {
+  const postID = (await params).postID;
+  const response = await db.query(`SELECT * FROM posts WHERE id=${postID}`);
+  let currentPost = response.rows[0];
+  async function handleEditPost(formData) {
     "use server";
     const formValues = {
       postTitle: formData.get("postTitle"),
@@ -11,7 +15,7 @@ export default async function AddPostPage() {
       postCategory: formData.get("postCategory"),
     };
     const response = db.query(
-      `INSERT INTO posts (post_title,post_content,post_img_url,post_category) VALUES ($1,$2,$3,$4)`,
+      `UPDATE posts (post_title,post_content,post_img_url,post_category) VALUES ($1,$2,$3,$4) where id=${postID}`,
       [
         formValues.postTitle,
         formValues.postContent,
@@ -24,26 +28,38 @@ export default async function AddPostPage() {
   }
   return (
     <>
-      <h1>Add post</h1>
-      <form action={handleAddPost}>
+      <form action={handleEditPost}>
         <label htmlFor="postTitle">Post Title</label>
-        <input name="postTitle" required />
+        <input
+          defaultValue={currentPost.post_title}
+          name="postTitle"
+          required
+        />
         <label htmlFor="postContent">Post Content</label>
-        <input name="postContent" required />
+        <input
+          defaultValue={currentPost.post_content}
+          name="postContent"
+          required
+        />
         <label htmlFor="postImgUrl">
           Post Image Url(currently only accepts unsplash and wikipedia image
           urls)
         </label>
-        <input name="postImgUrl" />
+        <input defaultValue={currentPost.post_img_url} name="postImgUrl" />
         <label htmlFor="postCategory">Post Category</label>
-        <select name="postCategory" required>
+        <select
+          defaultValue={currentPost.post_category}
+          name="postCategory"
+          required
+        >
           <option value={""}>Choose a category</option>
           <option value={"JS"}>JavaScript</option>
           <option value={"HTML"}>HTML</option>
           <option value={"React"}>React</option>
         </select>
-        <button type="submit">Add Post</button>
+        <button type="submit">Edit Post</button>
       </form>
+      <Link href={`/posts/${postID}`}>Back</Link>
     </>
   );
 }

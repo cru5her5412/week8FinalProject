@@ -1,0 +1,47 @@
+import DeleteButton from "@/app/components/DeleteCommentButton";
+import { db } from "@/utils/dbCon";
+import { clearPreviewData } from "next/dist/server/api-utils";
+import Link from "next/link";
+
+export default async function EditSpecificCommentPage({ params }) {
+  const postID = (await params).postID;
+  const commentID = (await params).commentID;
+  const response = await db.query(
+    `SELECT * FROM comments WHERE id=${commentID}`
+  );
+  let currentComment = response.rows[0];
+  async function handleEditComment(formData) {
+    "use server";
+    const formValues = {
+      commentUsername: formData.get("commentUsername"),
+      commentContent: formData.get("commentContent"),
+    };
+    const response = db.query(
+      `UPDATE comments (comment_username,comment_content) VALUES ($1,$2,$3) WHERE id=${commentID}`,
+      [formValues.commentUsername, formValues.commentContent]
+    );
+    revalidatePath(`/posts/${postID}`);
+    redirect(`/posts/${postID}`);
+  }
+
+  return (
+    <>
+      <form action={handleEditComment}>
+        <label htmlFor="commentUsername">Name(optional)</label>
+        <input
+          defaultValue={currentComment.comment_username}
+          name="commentUsername"
+        />
+        <label htmlFor="commentContent">Comment</label>
+        <input
+          defaultValue={currentComment.comment_content}
+          name="commentContent"
+          required
+        />
+        <button type="submit">Edit Comment</button>
+      </form>
+      <DeleteButton postID={postID} commentID={commentID} />
+      <Link href={`/posts/${postID}/comments/${commentID}`}>Back</Link>
+    </>
+  );
+}
