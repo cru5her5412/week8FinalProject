@@ -15,7 +15,7 @@ export default async function EditSpecificPostPage({ params }) {
       postCategory: formData.get("postCategory"),
     };
     const response = db.query(
-      `UPDATE posts (post_title,post_content,post_img_url,post_category) VALUES ($1,$2,$3,$4) where id=${postID}`,
+      `UPDATE posts SET (post_title,post_content,post_img_url,post_category)=($1,$2,$3,$4) where id=${postID}`,
       [
         formValues.postTitle,
         formValues.postContent,

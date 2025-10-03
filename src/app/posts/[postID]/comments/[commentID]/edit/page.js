@@ -17,7 +17,7 @@ export default async function EditSpecificCommentPage({ params }) {
       commentContent: formData.get("commentContent"),
     };
     const response = db.query(
-      `UPDATE comments (comment_username,comment_content) VALUES ($1,$2,$3) WHERE id=${commentID}`,
+      `UPDATE comments SET (comment_username,comment_content)=($1,$2) WHERE id=${commentID}`,
       [formValues.commentUsername, formValues.commentContent]
     );
     revalidatePath(`/posts/${postID}`);
