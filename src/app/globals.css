@@ -3,12 +3,15 @@
 :root {
   --background: #000;
   --foreground: #fff;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 .navLink {
   display: flex;
@@ -17,7 +20,7 @@ body {
   height: 5vh;
   justify-content: center;
   align-items: center;
-  border: #000 solid 1px;
+  border: 1px solid #fff;
   background-color: #000;
   color: #ffffff;
   &:hover {
@@ -29,19 +32,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-top: 0.5vh;
+  height: 5vh;
 }
 a:hover {
   background-color: yellow;
   color: #000;
 }
 button {
-  border: #fff solid 1px;
+  border: 1px solid #fff;
   &:hover {
     background-color: yellow;
     color: black;
   }
 }
 select {
-  border: #fff solid 1px;
+  border: 1px solid #fff;
+}
+option {
+  background-color: black;
+  color: white;
 }

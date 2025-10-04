@@ -9,7 +9,12 @@ export default function DeleteButton({ postID, commentID }) {
   }
   return (
     <>
-      <button onClick={handleDelete}>Delete</button>
+      <button
+        className="flex align-middle pl-[1vw] pr-[1vw] pt-[1vh] pb-[1vh] mt-[2vh]"
+        onClick={handleDelete}
+      >
+        Delete
+      </button>
     </>
   );
 }

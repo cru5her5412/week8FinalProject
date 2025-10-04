@@ -16,11 +16,12 @@ export default function CommentFormToggle({ postID }) {
   return (
     <>
       <button
+        className="w-[30%] pt-[1vh] pb-[1vh] pl-[1vw] pr-[1vw] mb-[2vh]"
         onClick={() => {
           redirect(`/posts/${postID}?commenting=${newCommenting}`);
         }}
       >
-        Comment
+        Hide/Show Add Comment
       </button>
     </>
   );

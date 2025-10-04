@@ -1,7 +1,7 @@
 import { db } from "@/utils/dbCon";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
-
+import editPageStyles from "./editPostPage.module.css";
 export default async function EditSpecificPostPage({ params }) {
   const postID = (await params).postID;
   const response = await db.query(`SELECT * FROM posts WHERE id=${postID}`);
@@ -27,27 +27,40 @@ export default async function EditSpecificPostPage({ params }) {
     redirect("/posts");
   }
   return (
-    <>
-      <form action={handleEditPost}>
-        <label htmlFor="postTitle">Post Title</label>
+    <div className={editPageStyles.page}>
+      <form className={editPageStyles.postFormElement} action={handleEditPost}>
+        <label className={editPageStyles.formLabel} htmlFor="postTitle">
+          Post Title
+        </label>
         <input
+          className={editPageStyles.formInput}
           defaultValue={currentPost.post_title}
           name="postTitle"
           required
         />
-        <label htmlFor="postContent">Post Content</label>
+        <label className={editPageStyles.formLabel} htmlFor="postContent">
+          Post Content
+        </label>
         <input
+          className={editPageStyles.formInput}
           defaultValue={currentPost.post_content}
           name="postContent"
           required
         />
-        <label htmlFor="postImgUrl">
+        <label className={editPageStyles.formLabel} htmlFor="postImgUrl">
           Post Image Url(currently only accepts unsplash and wikipedia image
           urls)
         </label>
-        <input defaultValue={currentPost.post_img_url} name="postImgUrl" />
-        <label htmlFor="postCategory">Post Category</label>
+        <input
+          className={editPageStyles.formInput}
+          defaultValue={currentPost.post_img_url}
+          name="postImgUrl"
+        />
+        <label className={editPageStyles.formLabel} htmlFor="postCategory">
+          Post Category
+        </label>
         <select
+          className={editPageStyles.formInput}
           defaultValue={currentPost.post_category}
           name="postCategory"
           required
@@ -57,9 +70,10 @@ export default async function EditSpecificPostPage({ params }) {
           <option value={"HTML"}>HTML</option>
           <option value={"React"}>React</option>
         </select>
-        <button type="submit">Edit Post</button>
+        <button className={editPageStyles.submitFormButton} type="submit">
+          Save Changes
+        </button>
       </form>
-      <Link href={`/posts/${postID}`}>Back</Link>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.commentFormElement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  width: 80vw;
+  height: 60vh;
+}
+.submitFormButton {
+  width: 80%;
+  padding: 1vh 1vw;
+  margin: 2vh 0;
+}
+.formInput {
+  border: 1px solid white;
+  background-color: rgb(40, 40, 40);
+  width: 80%;
+  margin-bottom: 4vh;
+}
+.formLabel {
+  margin: 2vh 0;
+  font-size: 1.5rem;
+}

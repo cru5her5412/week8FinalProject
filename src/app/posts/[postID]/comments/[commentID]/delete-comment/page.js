@@ -9,7 +9,6 @@ export default async function deleteSpecificCommentPage({ params }) {
   const response = await db.query(
     `DELETE FROM comments WHERE post_id=${postID} AND id=${commentID}`
   );
-  revalidatePath(`/posts/${postID}`);
   redirect(`/posts/${postID}`);
   return <></>;
 }

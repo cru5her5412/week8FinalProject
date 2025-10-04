@@ -1,8 +1,9 @@
 import DeleteButton from "@/app/components/DeleteCommentButton";
 import { db } from "@/utils/dbCon";
-import { clearPreviewData } from "next/dist/server/api-utils";
+import { revalidatePath } from "next/cache";
 import Link from "next/link";
-
+import { redirect } from "next/navigation";
+import editCommentStyles from "./editCommentPage.module.css";
 export default async function EditSpecificCommentPage({ params }) {
   const postID = (await params).postID;
   const commentID = (await params).commentID;
@@ -25,23 +26,37 @@ export default async function EditSpecificCommentPage({ params }) {
   }
 
   return (
-    <>
-      <form action={handleEditComment}>
-        <label htmlFor="commentUsername">Name(optional)</label>
+    <div className={editCommentStyles.container}>
+      <form
+        className={editCommentStyles.commentFormElement}
+        action={handleEditComment}
+      >
+        <label
+          className={editCommentStyles.formLabel}
+          htmlFor="commentUsername"
+        >
+          Name(optional)
+        </label>
         <input
+          className={editCommentStyles.formInput}
           defaultValue={currentComment.comment_username}
           name="commentUsername"
         />
-        <label htmlFor="commentContent">Comment</label>
-        <input
+        <label className={editCommentStyles.formLabel} htmlFor="commentContent">
+          Comment
+        </label>
+        <textarea
+          className={editCommentStyles.formInput}
           defaultValue={currentComment.comment_content}
           name="commentContent"
           required
+          rows="3"
         />
-        <button type="submit">Edit Comment</button>
+        <button className={editCommentStyles.submitFormButton} type="submit">
+          Edit Comment
+        </button>
       </form>
       <DeleteButton postID={postID} commentID={commentID} />
-      <Link href={`/posts/${postID}/comments/${commentID}`}>Back</Link>
-    </>
+    </div>
   );
 }

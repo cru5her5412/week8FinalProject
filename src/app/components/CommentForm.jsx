@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/utils/dbCon";
+import commentFormStyles from "./CommentForm.module.css";
 export default async function CommentForm(props) {
   const postID = props.postID;
   async function handleAddComment(formData) {
@@ -18,17 +19,33 @@ export default async function CommentForm(props) {
   }
 
   return (
-    <div className="flex flex-col">
-      <form className="flex flex-col items-center" action={handleAddComment}>
-        <label className="" htmlFor="commentUsername">
+    <div>
+      <form
+        className={commentFormStyles.commentFormElement}
+        action={handleAddComment}
+      >
+        <label
+          className={commentFormStyles.formLabel}
+          htmlFor="commentUsername"
+        >
           Name(optional)
         </label>
-        <input className="" name="commentUsername" />
-        <label className="" htmlFor="commentContent">
+        <input
+          className={commentFormStyles.formInput}
+          name="commentUsername"
+          id="commentUsername"
+        />
+        <label className={commentFormStyles.formLabel} htmlFor="commentContent">
           Comment
         </label>
-        <input className="" name="commentContent" required />
-        <button className="w-[30%]" type="submit">
+        <textarea
+          className={commentFormStyles.formInput}
+          name="commentContent"
+          id="commentContent"
+          required
+          rows="3"
+        />
+        <button className={commentFormStyles.submitFormButton} type="submit">
           Post Comment
         </button>
       </form>

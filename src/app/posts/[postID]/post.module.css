@@ -1,15 +1,59 @@
 .postTitle {
   font-size: 3rem;
+  margin-bottom: 1vh;
 }
 .postCategory {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 1vh;
 }
 .postImage {
   width: 80%;
+  margin-bottom: 1vh;
 }
 .postContent {
   font-size: 1rem;
+  margin-bottom: 1vh;
 }
-.postEdit {
-  font-size: 1.5rem;
+.postSection {
+  width: 100vw;
+  max-height: 80vh;
+  min-height: 50vh;
+}
+
+.postSection,
+.commentsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.postEdit,
+.allCommentsLink {
+  border: 1px solid #fff;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  padding: 1vh 1vw;
+  font-size: 1rem;
+}
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #fff;
+  width: 50vw;
+  margin-bottom: 1vh;
+}
+.commentName {
+  font-size: 1.6rem;
+}
+.commentContent {
+  font-size: 1rem;
+}
+.commentName,
+.commentContent {
+  padding: 1vh 1vw;
+}
+.commentTitle {
+  font-size: 2.5rem;
+  margin: 1vh 1vw;
 }
