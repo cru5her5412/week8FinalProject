@@ -8,7 +8,7 @@ export default async function AddPostPage() {
     const formValues = {
       postTitle: formData.get("postTitle"),
       postContent: formData.get("postContent"),
-      postImageUrl: formData.get("postImageUrl"),
+      postImageUrl: formData.get("postImgUrl"),
       postCategory: formData.get("postCategory"),
     };
     const response = db.query(
