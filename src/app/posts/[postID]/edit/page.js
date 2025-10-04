@@ -1,6 +1,6 @@
 import { db } from "@/utils/dbCon";
 import { revalidatePath } from "next/cache";
-import Link from "next/link";
+import { redirect } from "next/navigation";
 import editPageStyles from "./editPostPage.module.css";
 export default async function EditSpecificPostPage({ params }) {
   const postID = (await params).postID;
@@ -11,7 +11,7 @@ export default async function EditSpecificPostPage({ params }) {
     const formValues = {
       postTitle: formData.get("postTitle"),
       postContent: formData.get("postContent"),
-      postImageUrl: formData.get("postImageUrl"),
+      postImageUrl: formData.get("postImgUrl"),
       postCategory: formData.get("postCategory"),
     };
     const response = db.query(
